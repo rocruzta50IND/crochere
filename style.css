@@ -1,0 +1,152 @@
+:root {
+  --creme: #FEF9F5;
+  --creme-2: #F8EFE8;
+  --rosa-suave: #F7DEDF;
+  --rosa: #E7A3AD;
+  --rosa-forte: #B65A6B;
+  --rosa-escuro: #9A4757;     /* texto pequeno sobre rosa-suave: contraste >= 4,5:1 */      /* texto/botão: contraste ok sobre creme */
+  --oliva: #7E7F4F;
+  --oliva-esc: #5F6034;
+  --oliva-txt: #66673A;       /* oliva para texto pequeno (contraste >= 4,5:1) */
+  --tinta: #4A4A32;
+  --linha: #E9DDD2;
+  --sombra: 0 8px 24px rgba(95, 80, 60, .10);
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --script: "Parisienne", cursive;
+  --sans: "Jost", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scrollbar-gutter: stable; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--creme);
+  color: var(--tinta);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--oliva-esc); }
+.ico { width: 1.15em; height: 1.15em; fill: currentColor; flex: none; }
+
+/* ---------- Botões ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .55em;
+  padding: .8em 1.5em; border-radius: 999px; border: 1.5px solid var(--rosa-forte);
+  font: 500 1rem/1.1 var(--sans); letter-spacing: .02em; text-decoration: none;
+  cursor: pointer; transition: transform .15s, background .15s, color .15s, box-shadow .15s;
+}
+.btn--solido { background: var(--rosa-forte); color: #fff; }
+.btn--solido:hover { background: #a14c5c; transform: translateY(-1px); box-shadow: var(--sombra); }
+.btn--contorno { background: transparent; color: var(--rosa-forte); }
+.btn--contorno:hover { background: var(--rosa-suave); transform: translateY(-1px); }
+.btn:focus-visible, .card:focus-visible, .peca__fechar:focus-visible, .peca__mini button:focus-visible {
+  outline: 3px solid var(--oliva); outline-offset: 3px;
+}
+
+/* ---------- Topo ---------- */
+.hero {
+  text-align: center;
+  padding: clamp(28px, 6vw, 64px) 16px clamp(32px, 6vw, 56px);
+  background:
+    radial-gradient(60% 60% at 50% 0%, var(--rosa-suave) 0%, rgba(247,222,223,0) 70%),
+    var(--creme);
+}
+.hero__logo { width: min(560px, 88vw); margin: 0 auto; }
+.hero__frase { font-weight: 400; font-family: var(--serif); font-size: clamp(1.25rem, 3.2vw, 1.7rem); margin: 1.1rem auto 1.5rem; max-width: 30ch; color: var(--oliva-esc); }
+.hero__acoes { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+.hero__local { margin: 1.4rem 0 0; font-size: .9rem; letter-spacing: .18em; text-transform: uppercase; color: var(--oliva-txt); }
+
+/* ---------- Seções ---------- */
+.secao { padding: clamp(40px, 7vw, 80px) 16px; max-width: 1180px; margin: 0 auto; }
+.secao--rosa { max-width: none; background: var(--rosa-suave); }
+.secao--rosa > * { max-width: 1020px; margin-left: auto; margin-right: auto; }
+.secao__cab { text-align: center; margin-bottom: 2rem; }
+.script { font-family: var(--script); font-size: 1.7rem; color: var(--rosa-forte); margin: 0; line-height: 1; }
+h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(2.2rem, 6vw, 3.2rem); letter-spacing: .06em; text-transform: uppercase; color: var(--oliva); margin: .1rem 0 .4rem; line-height: 1.1; }
+.secao__sub { max-width: 52ch; margin: .6rem auto 0; }
+.secao__medidas { font-size: .95rem; color: var(--oliva-txt); margin-top: .3rem; }
+.fio { display: flex; align-items: center; justify-content: center; gap: .5rem; color: var(--oliva); margin: .4rem auto; max-width: 340px; }
+.fio__onda { width: 100%; height: 20px; flex: 1; }
+.fio__onda--esp { transform: scaleX(-1); }
+.fio__ico { width: 22px; height: 22px; fill: var(--rosa); flex: none; }
+
+/* ---------- Grade de bolsas ---------- */
+.grade { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 700px) { .grade { grid-template-columns: repeat(3, 1fr); gap: 22px; } }
+@media (min-width: 1000px) { .grade { grid-template-columns: repeat(4, 1fr); } }
+
+.card {
+  display: block; width: 100%; padding: 0; text-align: left; font: inherit; color: inherit;
+  background: #fff; border: 1px solid var(--linha); border-radius: 18px; overflow: hidden; cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+.card:hover { transform: translateY(-3px); box-shadow: var(--sombra); }
+.card__img { display: block; position: relative; aspect-ratio: 1; background: #FAF4EE; }
+.card__corpo { display: block; }
+.card__img img { width: 100%; height: 100%; object-fit: cover; }
+.card__corpo { padding: .75rem .9rem .95rem; }
+.card__nome { display: block; font-family: var(--serif); font-weight: 600; font-size: 1.2rem; line-height: 1.15; margin: 0 0 .25rem; color: var(--tinta); }
+.card__preco { display: block; margin: 0; font-size: .88rem; color: var(--oliva-esc); }
+.card--vendida .card__img img { filter: grayscale(.55) opacity(.8); }
+
+.selo {
+  display: inline-block; margin: 0 0 .4rem; padding: .15em .75em; border-radius: 999px;
+  font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; background: var(--rosa-suave); color: var(--rosa-escuro);
+}
+.card .selo { position: absolute; top: 10px; left: 10px; margin: 0; background: rgba(255,255,255,.92); }
+.selo--vendida { background: #ece7e1; color: #6b6458; }
+
+/* ---------- Sob encomenda ---------- */
+.passos { list-style: none; padding: 0; margin: 0 auto 2rem; display: grid; gap: 14px; }
+@media (min-width: 760px) { .passos { grid-template-columns: repeat(3, 1fr); gap: 22px; } }
+.passos li { background: var(--creme); border-radius: 18px; padding: 1.4rem 1.3rem; text-align: center; }
+.passos h3 { font-family: var(--serif); font-size: 1.45rem; margin: .5rem 0 .3rem; color: var(--oliva-esc); }
+.passos p { margin: 0; font-size: .98rem; }
+.passos__n { display: inline-grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--rosa-forte); color: #fff; font-family: var(--serif); font-size: 1.2rem; }
+.centro { text-align: center; }
+
+/* ---------- Bastidores ---------- */
+.faixa { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 2px 14px; }
+.faixa > * { flex: 0 0 min(260px, 72vw); scroll-snap-align: center; border-radius: 16px; background: #fff; border: 1px solid var(--linha); overflow: hidden; }
+.faixa video, .faixa img { width: 100%; height: 100%; max-height: 70vh; object-fit: cover; background: #000; aspect-ratio: 9 / 16; }
+.faixa img { background: var(--creme-2); }
+
+/* ---------- Rodapé ---------- */
+.rodape { text-align: center; padding: 40px 16px 56px; background: var(--creme-2); border-top: 1px solid var(--linha); }
+.rodape__logo { width: min(280px, 70vw); margin: 0 auto .4rem; }
+.rodape__frase { font-size: 1.5rem; margin-bottom: .8rem; }
+.rodape p { margin: .2rem 0; }
+.rodape__peq { font-size: .82rem; color: var(--oliva-txt); margin-top: 1rem !important; }
+.aviso { text-align: center; padding: 1rem; }
+
+/* ---------- Janela da peça ---------- */
+.peca { border: 0; padding: 0; border-radius: 22px; width: min(920px, 94vw); max-height: 92vh; max-height: 92dvh; background: var(--creme); color: var(--tinta); box-shadow: 0 20px 60px rgba(60,40,30,.3); overflow: auto; }
+.peca::backdrop { background: rgba(74, 74, 50, .55); }
+.peca > form { position: sticky; top: 0; height: 0; z-index: 3; }
+.peca__fechar { position: absolute; top: 10px; right: 12px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); font-size: 1.7rem; line-height: 1; color: var(--tinta); cursor: pointer; box-shadow: var(--sombra); }
+.peca__corpo { display: grid; grid-template-columns: minmax(0, 1fr); }
+.peca__corpo > * { min-width: 0; }
+@media (min-width: 760px) { .peca__corpo { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
+.peca__galeria { background: #FAF4EE; }
+.peca__foto { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.peca__mini { display: flex; gap: 8px; padding: 10px; overflow-x: auto; }
+.peca__mini button { flex: none; width: 62px; height: 62px; padding: 0; border: 2px solid transparent; border-radius: 10px; overflow: hidden; cursor: pointer; background: #fff; }
+.peca__mini button[aria-pressed="true"] { border-color: var(--rosa-forte); }
+.peca__mini img { width: 100%; height: 100%; object-fit: cover; }
+.peca__info { padding: 1.6rem 1.4rem 1.8rem; }
+.peca__info h3 { font-family: var(--serif); font-size: 2rem; line-height: 1.1; margin: 0 0 .3rem; color: var(--oliva); }
+.peca__preco { font-weight: 500; color: var(--rosa-forte); margin: 0 0 .8rem; }
+.peca__acoes { display: grid; gap: 10px; margin-top: 1.2rem; }
+.peca__nota { font-size: .85rem; color: var(--oliva-txt); margin: .9rem 0 0; }
+.peca__medidas { font-size: .95rem; color: var(--oliva-txt); margin: .4rem 0 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+body:has(dialog[open]) { overflow: hidden; }
